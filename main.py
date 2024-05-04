@@ -2,6 +2,9 @@ import random
 import discord
 import colorama
 
+with open("token", "r") as file:
+    TOKEN=file.read()
+
 def random_event():
     gen=random.randint(68,69)
     print(gen)
@@ -36,7 +39,7 @@ async def on_message(msg):
             if message == "LUCKY BASTARD":
                 pass
             else:
-                embed = discord.Embed(title="MESSAGE EATEN :hamburger: :pancakes: :waffle:",
+                embed = discord.Embed(title="MESSAGE EATEN :hamburger: :french_fries: :pizza:",
                                       description="Caseoh ate your message! :hamburger: :french_fries: :pizza:",
                                       color=0x992d22)
                 print(msg.channel)
@@ -46,14 +49,14 @@ async def on_message(msg):
                     await msg.delete()
                     await msg.channel.send(embed=embed)
 
-@bot.command(description="The command tracks the amount of messages eaten by caseoh")
+@bot.command(description="Track the amount of messages eaten by caseoh")
 async def stats(msg):
     with open("stats", "r") as file:
         STATS=file.read()
         if STATS=="0":
-            embed = discord.Embed(title="CaseOh Stats:", description=f"Case hasn't eaten any messages yet.", color=0x992d22)
+            embed = discord.Embed(title="CaseOh Stats", description=f"Case hasn't eaten any messages yet.", color=0x992d22)
         else:
-            embed = discord.Embed(title="CaseOh Stats:", description=f"Case already ate {STATS} messages.", color=0x992d22)
+            embed = discord.Embed(title="CaseOh Stats", description=f"Case already ate {STATS} messages.", color=0x992d22)
     await msg.respond(embed=embed)
 
-bot.run('MTIzNTI5ODc4Njc2NzY2NzIyMQ.G25HwG.4ib_4EP1Ogvn_2WxneZNrPOT1fEIN5XWL7bGm4')
+bot.run(TOKEN)
