@@ -5,7 +5,7 @@ import colorama
 with open("token", "r") as file:
     TOKEN=file.read()
 
-def random_event():
+def LUCK():
     gen=random.randint(68,69)
     print(gen)
     if gen==69:
@@ -15,9 +15,9 @@ def random_event():
         LATEST_STATS=LATEST_STATS+1
         with open("stats", "w") as file:
             file.write(str(LATEST_STATS))
-        return "IM HUNGY"
+        return 0
     else:
-        return "LUCKY BASTARD"
+        return 1
 
 bot = discord.Bot()
 
@@ -35,8 +35,8 @@ async def on_message(msg):
         if str(CHANNEL) == "no-eating":
             return
         else:
-            message = random_event()
-            if message == "LUCKY BASTARD":
+            CHANCE=LUCK()
+            if CHANCE==1:
                 pass
             else:
                 embed = discord.Embed(title="MESSAGE EATEN :hamburger: :french_fries: :pizza:",
